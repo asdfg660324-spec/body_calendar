@@ -35,6 +35,16 @@ jobs:
             --dart-define=SUPABASE_ANON_KEY="${{ secrets.SUPABASE_ANON_KEY }}" \
             --dart-define=SUPABASE_REDIRECT_URL=bodycalendar://login-callback/
 
+      - name: Package unsigned IPA
+        run: |
+          rm -rf build/ios/unsigned_ipa
+          mkdir -p build/ios/unsigned_ipa/Payload
+          cp -R build/ios/archive/Runner.xcarchive/Products/Applications/Runner.app \
+            build/ios/unsigned_ipa/Payload/BodyCalendar.app
+          mkdir -p build/ios/ipa
+          cd build/ios/unsigned_ipa
+          zip -qry ../ipa/body_calendar_unsigned.ipa Payload
+
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
