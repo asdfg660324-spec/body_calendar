@@ -22,11 +22,6 @@ jobs:
     #  uses: actions/checkout@v3
     - name: Check out repository
       uses: actions/checkout@v4
-      with:
-        #repository: octocat/my-private-repo
-        repository: innocentree/body_calendar
-        #ref: v1.0
-        # secrets 에 토큰이 없으면 빌드 실패
 
 
     # 2. 자바(JDK) 설정

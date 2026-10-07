@@ -84,6 +84,14 @@ flutter run \
 3. 루트 임시 파일 정리 (`fix*.py`, `temp_orig*.dart`, `analyze.txt` 등)
 4. format/analyze/test 자동화
 
+## iOS IPA 빌드
+
+GitHub Actions의 `Build iOS IPA` 워크플로를 수동 실행하거나 `master`/`release`에
+푸시하면 macOS 러너에서 unsigned IPA를 빌드해 Actions Artifact로 업로드합니다.
+클라우드 백업 기능을 사용하려면 저장소 Secrets에 `SUPABASE_URL`과
+`SUPABASE_ANON_KEY`를 등록하세요. 이 IPA는 서명되지 않았으므로 실제 iPhone 설치나
+TestFlight 배포에는 Apple Developer 인증서와 프로비저닝 프로파일 설정이 추가로 필요합니다.
+
 ## 최근 반영 사항
 
 - 휴식 타이머 설정 변경 시 현재 돌아가는 타이머의 전체 기준 시간(`initialDuration`)이 즉시 갱신되도록 수정
