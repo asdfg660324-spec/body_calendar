@@ -11,6 +11,8 @@ class AppConstants {
   static const String keyThemeMode = 'theme_mode';
   static const String keyFirstLaunch = 'first_launch';
   static const String keyUserProfile = 'user_profile';
+  static const String keyGuestStarted = 'guest_started';
+  static const String keyGuestEntryMethod = 'guest_entry_method';
   
   // 애니메이션 지속 시간
   static const Duration animationDuration = Duration(milliseconds: 300);

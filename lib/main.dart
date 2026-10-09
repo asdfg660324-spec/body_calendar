@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:window_manager/window_manager.dart';
 
 import 'package:body_calendar/core/config/cloud_sync_config.dart';
+import 'package:body_calendar/core/constants/app_constants.dart';
 import 'package:body_calendar/core/navigation/app_navigator.dart';
 import 'package:body_calendar/core/utils/ticker.dart';
 import 'package:body_calendar/features/cloud_sync/data/services/cloud_sync_service.dart';
@@ -19,6 +20,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'core/theme/app_theme.dart';
 import 'core/widgets/app_wakelock.dart';
 import 'features/calendar/presentation/screens/calendar_screen.dart';
+import 'features/onboarding/presentation/screens/welcome_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -127,6 +129,11 @@ void main() async {
   );
 }
 
+bool _hasStartedAsGuest() {
+  return getIt<SharedPreferences>().getBool(AppConstants.keyGuestStarted) ??
+      false;
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -161,7 +168,9 @@ class MyApp extends StatelessWidget {
               PointerDeviceKind.unknown,
             },
           ),
-          home: const CalendarScreen(),
+          home: _hasStartedAsGuest()
+              ? const CalendarScreen()
+              : const WelcomeScreen(),
         );
       },
     );
